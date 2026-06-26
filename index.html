@@ -122,7 +122,7 @@
             </div>
         </div>
 
-        <!-- Menu Suspenso Mobile Corrigido -->
+        <!-- Menu Suspenso Mobile -->
         <div id="mobile-menu" class="hidden xl:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full left-0 z-40 transition-all duration-300">
             <div class="px-4 py-3 space-y-1 max-h-[calc(100vh-80px)] overflow-y-auto">
                 <button onclick="switchTab('inicio')" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-700 flex items-center gap-3 transition-colors bg-primary-50 text-primary-700 font-bold" data-tab="inicio">
@@ -546,7 +546,7 @@
                                 <span class="absolute bottom-3 right-3 bg-gray-900/80 text-xxs px-2.5 py-1 rounded font-mono relative z-10">04:52</span>
                             </div>
                             <h4 class="font-bold text-gray-900 text-sm">O que é o Efeito de Estufa?</h4>
-                            <p class="text-xs text-gray-600 mt-1">Uma animação didática rápida sobre as emissões globais e as ações coletivas que mitigam os danos.</p>
+                            <p class="text-xs text-gray-600 mt-1">Uma explicação didática rápida sobre as emissões globais e as ações coletivas que mitigam os danos.</p>
                         </div>
                         <div class="mt-6 flex gap-2">
                             <span class="bg-gray-100 text-gray-700 text-xxs font-semibold px-2.5 py-1 rounded-full">#Biodiversidade</span>
@@ -1267,6 +1267,7 @@
             updateCartUI();
         }
 
+        // Modals abrir/fechar
         function openCartModal() {
             document.getElementById('cart-modal').classList.remove('hidden');
         }
@@ -1290,6 +1291,7 @@
             document.getElementById('custom-order-modal').classList.remove('hidden');
         }
 
+        // Propostas
         function closeCustomOrderModal() {
             document.getElementById('custom-order-modal').classList.add('hidden');
         }
