@@ -1,1814 +1,296 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Geração Restauração – Jovens Transformando o Futuro</title>
-    <!-- Tailwind CSS para Design Responsivo e Moderno -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter para Legibilidade e Estética Premium -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome para Ícones Lindos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js para Gráficos Dinâmicos no Painel de Impacto -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
-                        },
-                        earth: {
-                            50: '#fdf8f6',
-                            100: '#f2e8e5',
-                            500: '#c27d38',
-                            600: '#a76223',
-                            700: '#8c4e1a',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-        /* Custom scrollbar para parecer premium */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #15803d;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #166534;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Geração Restauração</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+<body class="bg-slate-50 font-sans text-slate-800">
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100 shadow-sm transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('inicio')">
-                    <div class="bg-brand-600 text-white p-2.5 rounded-2xl shadow-md shadow-brand-200 flex items-center justify-center transition hover:scale-105">
-                        <i class="fa-solid fa-seedling text-xl"></i>
-                    </div>
-                    <div>
-                        <span class="text-xl font-extrabold tracking-tight text-slate-900 flex items-center gap-1">
-                            Geração <span class="text-brand-600">Restauração</span>
-                        </span>
-                        <span class="block text-[10px] text-slate-500 font-semibold tracking-wider uppercase">Portal do Coletivo Ambiental</span>
-                    </div>
-                </div>
-
-                <!-- Desktop Menu -->
-                <nav class="hidden xl:flex space-x-1">
-                    <button onclick="switchTab('inicio')" class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold transition text-brand-700 bg-brand-50" data-tab="inicio">
-                        <i class="fa-solid fa-house mr-1.5 text-xs"></i> Início
-                    </button>
-                    <button onclick="switchTab('projetos')" class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition" data-tab="projetos">
-                        <i class="fa-solid fa-leaf mr-1.5 text-xs"></i> Projetos
-                    </button>
-                    <button onclick="switchTab('loja')" class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition" data-tab="loja">
-                        <i class="fa-solid fa-bag-shopping mr-1.5 text-xs"></i> Loja Sustentável
-                    </button>
-                    <button onclick="switchTab('crise')" class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition" data-tab="crise">
-                        <i class="fa-solid fa-earth-americas mr-1.5 text-xs"></i> Crise Climática
-                    </button>
-                    <button onclick="switchTab('games')" class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition" data-tab="games">
-                        <i class="fa-solid fa-gamepad mr-1.5 text-xs"></i> Jogos Verdes
-                    </button>
-                    <button onclick="switchTab('comunidade')" class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition" data-tab="comunidade">
-                        <i class="fa-solid fa-users mr-1.5 text-xs"></i> Comunidade
-                    </button>
-                    <button onclick="switchTab('ranking')" class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition" data-tab="ranking">
-                        <i class="fa-solid fa-trophy mr-1.5 text-xs"></i> Ranking
-                    </button>
-                    <button onclick="switchTab('agenda')" class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition" data-tab="agenda">
-                        <i class="fa-solid fa-calendar-days mr-1.5 text-xs"></i> Agenda
-                    </button>
-                    <button onclick="switchTab('impacto')" class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition" data-tab="impacto">
-                        <i class="fa-solid fa-chart-line mr-1.5 text-xs"></i> Impacto
-                    </button>
-                </nav>
-
-                <!-- Status Perfil Rápido do Usuário (Gamificação) -->
-                <div class="hidden md:flex items-center space-x-3 bg-slate-100/80 px-4 py-2 rounded-2xl">
-                    <div class="text-right">
-                        <p class="text-xs font-bold text-slate-900" id="userNameHeader">Jovem Protetor</p>
-                        <p class="text-[10px] text-brand-600 font-bold flex items-center justify-end gap-1">
-                            <i class="fa-solid fa-seedling"></i> <span id="userPointsHeader">120</span> Sementes
-                        </p>
-                    </div>
-                    <div class="h-10 w-10 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold text-lg shadow-sm">
-                        JP
-                    </div>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="xl:hidden flex items-center">
-                    <button onclick="toggleMobileMenu()" class="text-slate-600 hover:text-brand-600 focus:outline-none p-2 rounded-lg bg-slate-50">
-                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
-                    </button>
-                </div>
-            </div>
+  <!-- CABEÇALHO / NAVEGAÇÃO -->
+  <header class="bg-white border-b border-slate-100 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white text-xl">
+            🌱
+          </div>
+          <div>
+            <h1 class="font-bold text-lg leading-none text-slate-900">Geração <span class="text-emerald-600">Restauração</span></h1>
+            <p class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Portal do Coletivo Ambiental</p>
+          </div>
         </div>
 
-        <!-- Mobile Menu, show/hide based on menu state. -->
-        <div class="hidden xl:hidden bg-white border-b border-slate-100" id="mobile-menu">
-            <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 text-center">
-                <button onclick="switchTab('inicio'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-brand-700 bg-brand-50">Início</button>
-                <button onclick="switchTab('projetos'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50">Projetos</button>
-                <button onclick="switchTab('loja'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50">Loja Sustentável</button>
-                <button onclick="switchTab('crise'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50">Crise Climática</button>
-                <button onclick="switchTab('games'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50">Jogos Verdes</button>
-                <button onclick="switchTab('comunidade'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50">Comunidade</button>
-                <button onclick="switchTab('ranking'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50">Ranking</button>
-                <button onclick="switchTab('agenda'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50">Agenda</button>
-                <button onclick="switchTab('impacto'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50">Impacto</button>
-            </div>
-        </div>
-    </header>
+        <!-- Menu Navegação -->
+        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+          <a href="#inicio" class="hover:text-emerald-600 transition">Início</a>
+          <a href="#projetos" class="hover:text-emerald-600 transition">Projetos</a>
+          <a href="#loja" class="text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl font-bold">Loja Sustentável</a>
+          <a href="#crise" class="hover:text-emerald-600 transition">Crise Climática</a>
+          <a href="#jogos" class="hover:text-emerald-600 transition">Jogos Verdes</a>
+          <a href="#comunidade" class="hover:text-emerald-600 transition">Comunidade</a>
+        </nav>
 
-    <!-- NOTIFICAÇÃO DO SISTEMA (Substitui Alertas do Navegador) -->
-    <div id="toastNotification" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center space-x-3 max-w-sm">
-            <span class="text-brand-400 text-lg flex items-center justify-center" id="toastIcon">
-                <i class="fa-solid fa-circle-check"></i>
-            </span>
-            <span id="toastMessage" class="text-sm font-medium">Operação realizada com sucesso!</span>
+        <!-- Perfil / Pontos -->
+        <div class="flex items-center gap-3">
+          <div class="bg-emerald-50 border border-emerald-100 px-3 py-1.5 rounded-full flex items-center gap-2">
+            <span class="text-xs font-semibold text-emerald-800">Jovem Protetor</span>
+            <span class="text-xs font-bold text-emerald-600 bg-emerald-200/60 px-2 py-0.5 rounded-full">🌱 120 Sementes</span>
+          </div>
+          <div class="w-9 h-9 rounded-full bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">
+            JP
+          </div>
         </div>
+
+      </div>
     </div>
+  </header>
 
-    <!-- MAIN CONTENT WRAPPER -->
-    <main class="flex-grow">
+  <!-- SEÇÃO LOJA SUSTENTÁVEL -->
+  <section id="loja" class="py-12 bg-emerald-50/40 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Cabeçalho da Loja -->
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">
+          Consumo Consciente
+        </span>
+        <h2 class="text-3xl font-bold text-slate-900 mt-3">Nossa Loja Verde</h2>
+        <p class="text-slate-600 mt-2">
+          Adquira produtos sustentáveis feitos pelo nosso coletivo. Todo o valor arrecadado é revertido no financiamento de mutirões e sementes reais.
+        </p>
+      </div>
 
-        <!-- ============================================= -->
-        <!-- 🌱 TELA INICIAL (QUEM SOMOS) -->
-        <!-- ============================================= -->
-        <section id="inicio-tab" class="tab-content block">
-            <!-- Hero Section -->
-            <div class="relative bg-gradient-to-br from-brand-900 via-brand-800 to-emerald-950 text-white overflow-hidden py-24 sm:py-32">
-                <div class="absolute inset-0 opacity-10">
-                    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
-                        <path d="M30 20 s10-10 20 0 s10 10 20 0" fill="none" stroke="white" stroke-width="1"/>
-                        <path d="M10 50 s15-15 30 0 s15 15 30 0" fill="none" stroke="white" stroke-width="1"/>
-                        <path d="M20 80 s10-10 20 0 s10 10 20 0" fill="none" stroke="white" stroke-width="1"/>
-                    </svg>
-                </div>
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="text-center max-w-3xl mx-auto">
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-brand-500/20 text-brand-300 border border-brand-500/30 mb-6 uppercase tracking-widest">
-                            <i class="fa-solid fa-seedling"></i> Coletivo Geração Restauração
-                        </span>
-                        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6">
-                            Jovens <span class="text-brand-400">Transformando</span> o Futuro do Planeta
-                        </h1>
-                        <p class="text-lg sm:text-xl text-emerald-100/90 leading-relaxed mb-10">
-                            “Conectar, aprender, agir e restaurar.” Bem-vindo à nossa comunidade digital que une educação climática, gamificação, projetos científicos e ação real.
-                        </p>
-                        <div class="flex flex-col sm:flex-row justify-center gap-4">
-                            <button onclick="switchTab('projetos')" class="bg-brand-500 hover:bg-brand-600 text-white px-8 py-4 rounded-2xl font-bold transition-all shadow-lg shadow-brand-500/30 hover:shadow-brand-500/40 transform hover:-translate-y-0.5">
-                                Conheça Nossas Iniciativas
-                            </button>
-                            <button onclick="switchTab('games')" class="bg-white/10 hover:bg-white/15 border border-white/20 text-white px-8 py-4 rounded-2xl font-bold transition-all backdrop-blur">
-                                Jogar Desafios Ecológicos
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Ondas Decorativas de Transição -->
-                <div class="absolute bottom-0 left-0 right-0 h-16 bg-slate-50" style="clip-path: ellipse(60% 100% at 50% 100%);"></div>
+      <!-- Grid com os 10 Produtos em HTML Puro -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        
+        <!-- 1. Tag de papel semente -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between overflow-hidden p-5">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🌱</span>
+              <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">Papelaria Ecológica</span>
             </div>
-
-            <!-- Missão, Visão, Valores -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 -mt-8 relative z-20">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Missão -->
-                    <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-100 border border-slate-100 transform hover:-translate-y-1 transition duration-300">
-                        <div class="bg-emerald-50 text-brand-600 w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-bullseye text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3">Nossa Missão</h3>
-                        <p class="text-slate-600 leading-relaxed text-sm">
-                            Inspirar e engajar as novas gerações através da tecnologia, educação prática e parcerias comunitárias, tornando os estudantes protagonistas da mudança climática local.
-                        </p>
-                    </div>
-
-                    <!-- Visão -->
-                    <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-100 border border-slate-100 transform hover:-translate-y-1 transition duration-300">
-                        <div class="bg-amber-50 text-amber-600 w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-eye text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3">Nossa Visão</h3>
-                        <p class="text-slate-600 leading-relaxed text-sm">
-                            Ser referência nacional como plataforma educacional e de mobilização juvenil, promovendo cidades regenerativas com zero carbono até as próximas décadas.
-                        </p>
-                    </div>
-
-                    <!-- Valores -->
-                    <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-100 border border-slate-100 transform hover:-translate-y-1 transition duration-300">
-                        <div class="bg-cyan-50 text-cyan-600 w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-hand-holding-heart text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-3">Nossos Valores</h3>
-                        <p class="text-slate-600 leading-relaxed text-sm">
-                            Ética ecológica, protagonismo juvenil, solidariedade comunitária, respeito absoluto pela biodiversidade e compromisso inegociável com a justiça climática.
-                        </p>
-                    </div>
-                </div>
+            <h3 class="font-bold text-slate-800 text-base leading-snug mb-1">Tag de papel semente</h3>
+            <p class="text-xs text-slate-500 mb-4">Etiqueta ecológica e plantável com sementes integradas.</p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div>
+              <span class="block text-xs text-slate-400">Valor</span>
+              <span class="text-lg font-extrabold text-slate-900">R$ 0,50</span>
             </div>
-
-            <!-- História do Coletivo & Linha do Tempo -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div>
-                        <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1.5 rounded-full">Nossa História</span>
-                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 mb-6">Como começamos a mudar o amanhã hoje</h2>
-                        <div class="prose text-slate-600 space-y-4">
-                            <p>
-                                O Coletivo Geração Restauração nasceu na sala de aula de uma escola pública, liderado por estudantes preocupados com o descarte irregular de resíduos em seu bairro e os efeitos extremos do clima em sua comunidade.
-                            </p>
-                            <p>
-                                Percebendo que palestras isoladas não geravam mudanças definitivas, decidimos criar soluções autênticas: mutirões de plantio, hortas em caixas de feira recicladas e o desenvolvimento de ciência cidadã com baixos custos.
-                            </p>
-                            <p>
-                                Atualmente, agregamos jovens de diversas regiões que entendem a sustentabilidade como pilar prático, gerando renda e multiplicando os conceitos da economia circular pela tecnologia.
-                            </p>
-                        </div>
-                        <!-- Botão com ação -->
-                        <div class="mt-8">
-                            <button onclick="switchTab('agenda')" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-2xl transition shadow-md shadow-brand-100">
-                                <i class="fa-solid fa-calendar-plus"></i> Inscreva-se em Nosso Próximo Mutirão
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Linha do Tempo Interativa -->
-                    <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-100 border border-slate-100">
-                        <h3 class="text-xl font-bold text-slate-900 mb-8 flex items-center gap-2">
-                            <i class="fa-solid fa-timeline text-brand-600"></i> Jornada de Impacto
-                        </h3>
-                        <div class="space-y-8 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-slate-100">
-                            <!-- Marco 1 -->
-                            <div class="relative pl-10">
-                                <div class="absolute left-1.5 top-1.5 w-4 h-4 bg-brand-500 rounded-full ring-4 ring-brand-100 flex items-center justify-center"></div>
-                                <span class="text-xs font-bold text-brand-600">Março de 2024</span>
-                                <h4 class="text-base font-bold text-slate-900 mt-1">A Centelha Inicial</h4>
-                                <p class="text-xs text-slate-500 mt-1">Fundação do Coletivo por 15 estudantes com foco em recolhimento e reciclagem de lixo eletrônico.</p>
-                            </div>
-                            <!-- Marco 2 -->
-                            <div class="relative pl-10">
-                                <div class="absolute left-1.5 top-1.5 w-4 h-4 bg-brand-500 rounded-full ring-4 ring-brand-100 flex items-center justify-center"></div>
-                                <span class="text-xs font-bold text-brand-600">Agosto de 2024</span>
-                                <h4 class="text-base font-bold text-slate-900 mt-1">1º Mutirão de Reflorestamento</h4>
-                                <p class="text-xs text-slate-500 mt-1">Mais de 250 mudas de árvores nativas plantadas em área urbana degradada.</p>
-                            </div>
-                            <!-- Marco 3 -->
-                            <div class="relative pl-10">
-                                <div class="absolute left-1.5 top-1.5 w-4 h-4 bg-brand-500 rounded-full ring-4 ring-brand-100 flex items-center justify-center"></div>
-                                <span class="text-xs font-bold text-brand-600">Maio de 2025</span>
-                                <h4 class="text-base font-bold text-slate-900 mt-1">Prêmio Escola Verde Nacional</h4>
-                                <p class="text-xs text-slate-500 mt-1">Reconhecimento científico pelo sistema de compostagem doméstica simplificado.</p>
-                            </div>
-                            <!-- Marco 4 -->
-                            <div class="relative pl-10">
-                                <div class="absolute left-1.5 top-1.5 w-4 h-4 bg-brand-500 rounded-full ring-4 ring-brand-100 flex items-center justify-center"></div>
-                                <span class="text-xs font-bold text-brand-600">Hoje</span>
-                                <h4 class="text-base font-bold text-slate-900 mt-1">Criação da Plataforma Digital</h4>
-                                <p class="text-xs text-slate-500 mt-1">Levando a mensagem para milhares de jovens por meio da gamificação e interatividade.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mapa das Ações (Ilustrado & Simulado Interativo) -->
-            <div class="bg-gradient-to-b from-white to-slate-50 py-16">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-2xl mx-auto mb-12">
-                        <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1.5 rounded-full">Mapa de Atuação</span>
-                        <h2 class="text-3xl font-extrabold text-slate-900 mt-4">Nossa Comunidade em Ação</h2>
-                        <p class="text-slate-600 mt-3 text-sm">Clique nos pontos verdes do mapa simulado abaixo para conhecer projetos específicos que realizamos em nossa cidade.</p>
-                    </div>
-
-                    <div class="bg-white border border-slate-100 shadow-xl rounded-3xl p-6 lg:p-8">
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                            <!-- Visual do Mapa Interativo -->
-                            <div class="lg:col-span-2 bg-emerald-950 rounded-2xl p-6 relative min-h-[400px] flex items-center justify-center overflow-hidden">
-                                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-                                <!-- Linhas de conexões abstratas em SVG -->
-                                <svg class="absolute inset-0 w-full h-full text-brand-600/30" xmlns="http://www.w3.org/2000/svg">
-                                    <line x1="20%" y1="30%" x2="50%" y2="50%" stroke="currentColor" stroke-dasharray="5,5" stroke-width="2" />
-                                    <line x1="50%" y1="50%" x2="80%" y2="40%" stroke="currentColor" stroke-dasharray="5,5" stroke-width="2" />
-                                    <line x1="50%" y1="50%" x2="40%" y2="80%" stroke="currentColor" stroke-dasharray="5,5" stroke-width="2" />
-                                    <line x1="20%" y1="30%" x2="40%" y2="80%" stroke="currentColor" stroke-dasharray="5,5" stroke-width="2" />
-                                </svg>
-                                
-                                <!-- Ponto 1 -->
-                                <button onclick="showMapPoint('ponto1', 'Escola Estadual Amiga do Meio Ambiente', 'Recipiente e compostagem de resíduos orgânicos da cantina escolar. Impacto: 400kg de fertilizante gerados anualmente.', 'ZONA SUL')" class="absolute top-[30%] left-[20%] group">
-                                    <span class="absolute inline-flex h-8 w-8 rounded-full bg-brand-400 opacity-75 animate-ping"></span>
-                                    <span class="relative flex items-center justify-center h-8 w-8 rounded-full bg-brand-500 text-white font-bold text-xs group-hover:scale-125 transition">
-                                        <i class="fa-solid fa-school"></i>
-                                    </span>
-                                </button>
-                                
-                                <!-- Ponto 2 -->
-                                <button onclick="showMapPoint('ponto2', 'Parque Linear das Águas', 'Replantio de mata ciliar e proteção contra erosão do córrego municipal. Impacto: 120 mudas nativas estabelecidas.', 'ZONA CENTRAL')" class="absolute top-[50%] left-[50%] group">
-                                    <span class="absolute inline-flex h-8 w-8 rounded-full bg-amber-400 opacity-75 animate-ping"></span>
-                                    <span class="relative flex items-center justify-center h-8 w-8 rounded-full bg-amber-500 text-white font-bold text-xs group-hover:scale-125 transition">
-                                        <i class="fa-solid fa-tree"></i>
-                                    </span>
-                                </button>
-
-                                <!-- Ponto 3 -->
-                                <button onclick="showMapPoint('ponto3', 'Horta Urbana Comunitária Bairro Novo', 'Construção de canteiros suspensos utilizando garrafas PET e pneus. Produção de legumes sem agrotóxicos.', 'ZONA LESTE')" class="absolute top-[40%] left-[80%] group">
-                                    <span class="absolute inline-flex h-8 w-8 rounded-full bg-cyan-400 opacity-75 animate-ping"></span>
-                                    <span class="relative flex items-center justify-center h-8 w-8 rounded-full bg-cyan-500 text-white font-bold text-xs group-hover:scale-125 transition">
-                                        <i class="fa-solid fa-seedling"></i>
-                                    </span>
-                                </button>
-
-                                <!-- Ponto 4 -->
-                                <button onclick="showMapPoint('ponto4', 'Centro Tecnológico de Reciclagem', 'Ponto de coleta de pilhas, baterias e celulares descartados incorretamente e reciclagem eletrônica.', 'ZONA NORTE')" class="absolute top-[80%] left-[40%] group">
-                                    <span class="absolute inline-flex h-8 w-8 rounded-full bg-emerald-400 opacity-75 animate-ping"></span>
-                                    <span class="relative flex items-center justify-center h-8 w-8 rounded-full bg-emerald-500 text-white font-bold text-xs group-hover:scale-125 transition">
-                                        <i class="fa-solid fa-recycle"></i>
-                                    </span>
-                                </button>
-
-                                <p class="absolute bottom-4 left-4 text-xs text-white/50 bg-slate-900/50 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
-                                    <i class="fa-solid fa-hand-pointer"></i> Selecione os marcadores para detalhes
-                                </p>
-                            </div>
-
-                            <!-- Informações do Ponto Selecionado -->
-                            <div class="flex flex-col justify-between bg-slate-50 p-6 rounded-2xl border border-slate-100" id="mapInfoPanel">
-                                <div>
-                                    <span class="text-[10px] font-bold text-brand-700 bg-brand-100 px-2.5 py-1 rounded-md" id="mapRegion">ZONA CENTRAL</span>
-                                    <h4 class="text-xl font-bold text-slate-900 mt-3 mb-2" id="mapTitle">Parque Linear das Águas</h4>
-                                    <p class="text-slate-600 text-sm leading-relaxed" id="mapDescription">
-                                        Replantio de mata ciliar e proteção contra erosão do córrego municipal. Impacto: 120 mudas nativas estabelecidas.
-                                    </p>
-                                </div>
-                                <div class="mt-6 pt-4 border-t border-slate-200">
-                                    <div class="flex items-center space-x-3 text-slate-600 text-xs">
-                                        <span class="flex items-center gap-1 text-emerald-600 font-bold"><i class="fa-solid fa-shield-halved"></i> Monitorado</span>
-                                        <span class="flex items-center gap-1 text-brand-600 font-bold"><i class="fa-solid fa-circle-check"></i> Concluído</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ============================================= -->
-        <!-- ♻️ ABA PROJETOS E SERVIÇOS -->
-        <!-- ============================================= -->
-        <section id="projetos-tab" class="tab-content hidden py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1.5 rounded-full">Portfólio do Coletivo</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4">Nossos Projetos & Serviços</h2>
-                    <p class="text-slate-600 mt-3 text-sm">Desenvolvemos soluções sólidas para problemas reais nas frentes de educação, recuperação física ambiental e incentivo à pesquisa científica.</p>
-                </div>
-
-                <!-- Filtros Rápidos -->
-                <div class="flex flex-wrap justify-center gap-2 mb-10">
-                    <button onclick="filterProjects('todos')" class="project-filter-btn px-5 py-2.5 rounded-full text-sm font-bold bg-brand-600 text-white transition shadow" data-filter="todos">Todos</button>
-                    <button onclick="filterProjects('educacao')" class="project-filter-btn px-5 py-2.5 rounded-full text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-brand-500 transition" data-filter="educacao">Educação Ambiental</button>
-                    <button onclick="filterProjects('recuperacao')" class="project-filter-btn px-5 py-2.5 rounded-full text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-brand-500 transition" data-filter="recuperacao">Recuperação Ambiental</button>
-                    <button onclick="filterProjects('pesquisa')" class="project-filter-btn px-5 py-2.5 rounded-full text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-brand-500 transition" data-filter="pesquisa">Pesquisa Científica</button>
-                </div>
-
-                <!-- Grid de Projetos -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
-                    <!-- Projeto 1 (Educação) -->
-                    <div class="project-card bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="educacao">
-                        <div>
-                            <!-- Imagem Representativa -->
-                            <div class="bg-gradient-to-br from-brand-100 to-emerald-200 h-48 flex items-center justify-center p-6 text-center text-brand-900 font-bold">
-                                <div class="space-y-2">
-                                    <i class="fa-solid fa-chalkboard-user text-5xl text-brand-600"></i>
-                                    <p class="text-sm">Oficinas e Palestras Escolares</p>
-                                </div>
-                            </div>
-                            <div class="p-6">
-                                <span class="text-[10px] font-bold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-md uppercase tracking-wider">Educação</span>
-                                <h3 class="text-xl font-bold text-slate-900 mt-3">Sustentabilidade nas Escolas</h3>
-                                <p class="text-slate-600 text-sm mt-2 leading-relaxed">
-                                    Oficinas dinâmicas sobre consumo consciente, triagem de recicláveis e debates construtivos em escolas municipais e estaduais da rede pública.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="p-6 pt-0 border-t border-slate-100 mt-4 flex items-center justify-between text-xs text-slate-500">
-                            <span><i class="fa-solid fa-users text-brand-500"></i> +2.000 Alunos</span>
-                            <span class="font-bold text-brand-600"><i class="fa-solid fa-heart"></i> Impacto Alto</span>
-                        </div>
-                    </div>
-
-                    <!-- Projeto 2 (Recuperação) -->
-                    <div class="project-card bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="recuperacao">
-                        <div>
-                            <div class="bg-gradient-to-br from-teal-100 to-emerald-200 h-48 flex items-center justify-center p-6 text-center text-teal-900 font-bold">
-                                <div class="space-y-2">
-                                    <i class="fa-solid fa-tree text-5xl text-teal-600"></i>
-                                    <p class="text-sm">Mutirões de Reflorestamento</p>
-                                </div>
-                            </div>
-                            <div class="p-6">
-                                <span class="text-[10px] font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-md uppercase tracking-wider">Recuperação</span>
-                                <h3 class="text-xl font-bold text-slate-900 mt-3">Bosque Urbano Autônomo</h3>
-                                <p class="text-slate-600 text-sm mt-2 leading-relaxed">
-                                    Plantio focado de espécies arbóreas nativas com monitoramento de crescimento e controle de erosão pluvial em declives urbanos desprovidos de vegetação.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="p-6 pt-0 border-t border-slate-100 mt-4 flex items-center justify-between text-xs text-slate-500">
-                            <span><i class="fa-solid fa-seedling text-brand-500"></i> 1.250 Árvores</span>
-                            <span class="font-bold text-brand-600"><i class="fa-solid fa-cloud-arrow-down"></i> -15t CO2</span>
-                        </div>
-                    </div>
-
-                    <!-- Projeto 3 (Pesquisa) -->
-                    <div class="project-card bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="pesquisa">
-                        <div>
-                            <div class="bg-gradient-to-br from-amber-100 to-orange-200 h-48 flex items-center justify-center p-6 text-center text-amber-950 font-bold">
-                                <div class="space-y-2">
-                                    <i class="fa-solid fa-vial text-5xl text-amber-600"></i>
-                                    <p class="text-sm">Ciência Jovem Aplicada</p>
-                                </div>
-                            </div>
-                            <div class="p-6">
-                                <span class="text-[10px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md uppercase tracking-wider">Pesquisa</span>
-                                <h3 class="text-xl font-bold text-slate-900 mt-3">Composteira Termofílica de Baixo Custo</h3>
-                                <p class="text-slate-600 text-sm mt-2 leading-relaxed">
-                                    Desenvolvimento de metodologia para compostagem rápida sem odores para uso em apartamentos e espaços limitados usando materiais alternativos recicláveis.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="p-6 pt-0 border-t border-slate-100 mt-4 flex items-center justify-between text-xs text-slate-500">
-                            <span><i class="fa-solid fa-star text-amber-500"></i> 1º Lugar Feira local</span>
-                            <span class="font-bold text-brand-600"><i class="fa-solid fa-flask"></i> 100% Caseiro</span>
-                        </div>
-                    </div>
-
-                    <!-- Projeto 4 (Recuperação) -->
-                    <div class="project-card bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="recuperacao">
-                        <div>
-                            <div class="bg-gradient-to-br from-indigo-100 to-cyan-200 h-48 flex items-center justify-center p-6 text-center text-indigo-950 font-bold">
-                                <div class="space-y-2">
-                                    <i class="fa-solid fa-trash-can-arrow-up text-5xl text-indigo-600"></i>
-                                    <p class="text-sm">Limpeza Pública Coletiva</p>
-                                </div>
-                            </div>
-                            <div class="p-6">
-                                <span class="text-[10px] font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-md uppercase tracking-wider">Recuperação</span>
-                                <h3 class="text-xl font-bold text-slate-900 mt-3">Rios Sem Resíduos</h3>
-                                <p class="text-slate-600 text-sm mt-2 leading-relaxed">
-                                    Mutirões de limpeza nas margens do Rio Claro, coletando plásticos de uso único e integrando ações de educação porta a porta com a vizinhança.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="p-6 pt-0 border-t border-slate-100 mt-4 flex items-cols justify-between text-xs text-slate-500">
-                            <span><i class="fa-solid fa-dumpster text-brand-500"></i> +800kg Coletados</span>
-                            <span class="font-bold text-brand-600"><i class="fa-solid fa-triangle-exclamation"></i> Alerta Plásticos</span>
-                        </div>
-                    </div>
-
-                    <!-- Projeto 5 (Educação) -->
-                    <div class="project-card bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="educacao">
-                        <div>
-                            <div class="bg-gradient-to-br from-sky-100 to-blue-200 h-48 flex items-center justify-center p-6 text-center text-blue-950 font-bold">
-                                <div class="space-y-2">
-                                    <i class="fa-solid fa-newspaper text-5xl text-blue-600"></i>
-                                    <p class="text-sm">Campanhas e Mobilização</p>
-                                </div>
-                            </div>
-                            <div class="p-6">
-                                <span class="text-[10px] font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md uppercase tracking-wider">Educação</span>
-                                <h3 class="text-xl font-bold text-slate-900 mt-3">Comunidade Consciente</h3>
-                                <p class="text-slate-600 text-sm mt-2 leading-relaxed">
-                                    Panfletagem digital, cartilhas em PDF de circulação aberta e produção de mídias de vídeo informativas sobre a redução de consumo de água e luz.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="p-6 pt-0 border-t border-slate-100 mt-4 flex items-center justify-between text-xs text-slate-500">
-                            <span><i class="fa-solid fa-globe text-brand-500"></i> 15.000 Visualizações</span>
-                            <span class="font-bold text-brand-600"><i class="fa-solid fa-mobile-screen"></i> 100% Digital</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ============================================= -->
-        <!-- 🛒 LOJA SUSTENTÁVEL -->
-        <!-- ============================================= -->
-        <section id="loja-tab" class="tab-content hidden py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Seção Header com Botão de Carrinho -->
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-                    <div>
-                        <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1.5 rounded-full">Economia Circular</span>
-                        <h2 class="text-3xl font-extrabold text-slate-900 mt-4">Nossa Loja Verde</h2>
-                        <p class="text-slate-600 mt-3 text-sm">Adquira produtos sustentáveis feitos pelo nosso coletivo. Todo o valor arrecadado é revertido no financiamento de mutirões e sementes reais.</p>
-                    </div>
-                    <!-- Carrinho -->
-                    <button onclick="toggleCartModal()" class="mt-6 md:mt-0 flex items-center gap-3 bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3.5 rounded-2xl shadow-lg shadow-brand-200 transition">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span>Meu Carrinho</span>
-                        <span class="bg-white text-brand-700 text-xs px-2.5 py-1 rounded-full" id="cartBadgeCount">0</span>
-                    </button>
-                </div>
-
-                <!-- Catálogo de Produtos -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Produto 1 -->
-                    <div class="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-md flex flex-col justify-between">
-                        <div>
-                            <div class="bg-slate-100 h-48 flex items-center justify-center p-6 text-brand-800 text-center font-bold text-sm">
-                                <div class="space-y-2">
-                                    <i class="fa-solid fa-bag-shopping text-5xl text-brand-600"></i>
-                                    <p>Ecobag Costurada Algodão Orgânico</p>
-                                </div>
-                            </div>
-                            <div class="p-5">
-                                <h3 class="font-bold text-slate-900 text-lg">Ecobag Geração Restauração</h3>
-                                <p class="text-slate-500 text-xs mt-1 leading-relaxed">Feita em algodão cru 100% orgânico livre de pesticidas químicos.</p>
-                                <p class="text-brand-600 font-extrabold text-xl mt-4">R$ 29,90</p>
-                            </div>
-                        </div>
-                        <div class="p-5 pt-0">
-                            <button onclick="addToCart('Ecobag Geração Restauração', 29.90)" class="w-full bg-slate-50 hover:bg-brand-50 hover:text-brand-700 border border-slate-200 hover:border-brand-300 text-slate-700 font-bold py-2.5 px-4 rounded-xl transition text-sm flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-plus text-xs"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Produto 2 -->
-                    <div class="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-md flex flex-col justify-between">
-                        <div>
-                            <div class="bg-slate-100 h-48 flex items-center justify-center p-6 text-slate-800 text-center font-bold text-sm">
-                                <div class="space-y-2">
-                                    <i class="fa-solid fa-cubes-stacked text-5xl text-amber-700"></i>
-                                    <p>Composteira Doméstica 15 Litros</p>
-                                </div>
-                            </div>
-                            <div class="p-5">
-                                <h3 class="font-bold text-slate-900 text-lg">Composteira Doméstica</h3>
-                                <p class="text-slate-500 text-xs mt-1 leading-relaxed">3 baldes modulares de plástico reaproveitado com torneira para extrair biofertilizante.</p>
-                                <p class="text-brand-600 font-extrabold text-xl mt-4">R$ 89,00</p>
-                            </div>
-                        </div>
-                        <div class="p-5 pt-0">
-                            <button onclick="addToCart('Composteira Doméstica', 89.00)" class="w-full bg-slate-50 hover:bg-brand-50 hover:text-brand-700 border border-slate-200 hover:border-brand-300 text-slate-700 font-bold py-2.5 px-4 rounded-xl transition text-sm flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-plus text-xs"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Produto 3 -->
-                    <div class="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-md flex flex-col justify-between">
-                        <div>
-                            <div class="bg-slate-100 h-48 flex items-center justify-center p-6 text-slate-800 text-center font-bold text-sm">
-                                <div class="space-y-2">
-                                    <i class="fa-solid fa-compass text-5xl text-emerald-600"></i>
-                                    <p>Kit Educativo Ecológico Infanto-Juvenil</p>
-                                </div>
-                            </div>
-                            <div class="p-5">
-                                <h3 class="font-bold text-slate-900 text-lg">Kit Eco-Educativo</h3>
-                                <p class="text-slate-500 text-xs mt-1 leading-relaxed">Contém sementes, terra adubada, vaso de fibra de coco e livreto interativo.</p>
-                                <p class="text-brand-600 font-extrabold text-xl mt-4">R$ 45,00</p>
-                            </div>
-                        </div>
-                        <div class="p-5 pt-0">
-                            <button onclick="addToCart('Kit Eco-Educativo', 45.00)" class="w-full bg-slate-50 hover:bg-brand-50 hover:text-brand-700 border border-slate-200 hover:border-brand-300 text-slate-700 font-bold py-2.5 px-4 rounded-xl transition text-sm flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-plus text-xs"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Produto 4 -->
-                    <div class="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-md flex flex-col justify-between">
-                        <div>
-                            <div class="bg-slate-100 h-48 flex items-center justify-center p-6 text-slate-800 text-center font-bold text-sm">
-                                <div class="space-y-2">
-                                    <i class="fa-solid fa-seedling text-5xl text-brand-600"></i>
-                                    <p>Muda de Ipê Amarelo ou Roxo</p>
-                                </div>
-                            </div>
-                            <div class="p-5">
-                                <h3 class="font-bold text-slate-900 text-lg">Mudas de Árvores Nativas</h3>
-                                <p class="text-slate-500 text-xs mt-1 leading-relaxed">Mudas enraizadas, adaptadas para plantio urbano imediato ou vasos profundos.</p>
-                                <p class="text-brand-600 font-extrabold text-xl mt-4">R$ 15,00</p>
-                            </div>
-                        </div>
-                        <div class="p-5 pt-0">
-                            <button onclick="addToCart('Mudas Nativas', 15.00)" class="w-full bg-slate-50 hover:bg-brand-50 hover:text-brand-700 border border-slate-200 hover:border-brand-300 text-slate-700 font-bold py-2.5 px-4 rounded-xl transition text-sm flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-plus text-xs"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Custom / Encomendas Personalizadas -->
-                <div class="mt-16 bg-gradient-to-br from-brand-900 to-emerald-950 text-white rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden">
-                    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]"></div>
-                    <div class="max-w-2xl relative z-10">
-                        <span class="text-xs font-bold uppercase tracking-widest text-brand-400">Parcerias e Brindes Ecológicos</span>
-                        <h3 class="text-2xl sm:text-3xl font-extrabold mt-3 mb-4">Encomendas Personalizadas para Escolas ou Empresas</h3>
-                        <p class="text-slate-200 text-sm leading-relaxed mb-8">
-                            Seja para brindes corporativos ecológicos, mutirões integrados patrocinados, ou campanhas de fidelização verde. Nós produzimos ecobags, mudas identificadas e materiais sob medida com a sua identidade visual.
-                        </p>
-                        <form id="orderCustomForm" onsubmit="handleCustomOrder(event)" class="space-y-4 max-w-lg">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <input type="text" id="customName" placeholder="Seu nome" required class="bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm placeholder-white/50 text-white focus:outline-none focus:ring-2 focus:ring-brand-400">
-                                <input type="email" id="customEmail" placeholder="Seu e-mail" required class="bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm placeholder-white/50 text-white focus:outline-none focus:ring-2 focus:ring-brand-400">
-                            </div>
-                            <textarea id="customDesc" rows="3" placeholder="Descreva sua ideia, quantidade estimada e objetivo de impacto..." required class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm placeholder-white/50 text-white focus:outline-none focus:ring-2 focus:ring-brand-400"></textarea>
-                            <button type="submit" class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-6 py-3 rounded-xl transition text-sm">
-                                Enviar Pedido de Proposta
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CART MODAL -->
-        <div id="cartModal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <div onclick="toggleCartModal()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" aria-hidden="true"></div>
-                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-                <div class="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                    <div class="bg-white px-6 pt-6 pb-4 sm:p-8 sm:pb-4">
-                        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-                            <h3 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
-                                <i class="fa-solid fa-cart-shopping text-brand-600"></i> Meu Carrinho
-                            </h3>
-                            <button onclick="toggleCartModal()" class="text-slate-400 hover:text-slate-600 p-2 rounded-lg bg-slate-50">
-                                <i class="fa-solid fa-xmark text-lg"></i>
-                            </button>
-                        </div>
-                        <!-- Lista do Carrinho -->
-                        <div class="mt-6 space-y-4 min-h-[150px] max-h-[300px] overflow-y-auto" id="cartItemsList">
-                            <p class="text-slate-400 text-sm text-center py-8">Seu carrinho está vazio.</p>
-                        </div>
-                        <!-- Total -->
-                        <div class="border-t border-slate-100 mt-6 pt-4 flex justify-between font-bold text-slate-900 text-lg">
-                            <span>Subtotal:</span>
-                            <span id="cartTotalPrice">R$ 0,00</span>
-                        </div>
-                    </div>
-                    <!-- Footer do modal -->
-                    <div class="bg-slate-50 px-6 py-4 sm:px-8 sm:flex sm:flex-row-reverse gap-3">
-                        <button onclick="checkoutCart()" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-xl transition text-sm">
-                            Simular Finalização de Compra
-                        </button>
-                        <button onclick="toggleCartModal()" class="mt-3 sm:mt-0 w-full sm:w-auto bg-white border border-slate-200 text-slate-700 font-bold px-6 py-3 rounded-xl transition text-sm hover:bg-slate-100">
-                            Continuar Comprando
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <button onclick="adicionarAoCarrinho('Tag de papel semente', 0.50)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-3.5 py-2.5 rounded-xl transition shadow-sm active:scale-95">
+              + Adicionar
+            </button>
+          </div>
         </div>
 
-
-        <!-- ============================================= -->
-        <!-- 🌎 CENTRAL DA CRISE CLIMÁTICA -->
-        <!-- ============================================= -->
-        <section id="crise-tab" class="tab-content hidden py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1.5 rounded-full">Informação Sem Filtro</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4">Central de Alerta & Ciência Climática</h2>
-                    <p class="text-slate-600 mt-3 text-sm">Simplificando o que diz a ciência global. Saiba os fatos e conecte-se com as soluções necessárias.</p>
-                </div>
-
-                <!-- Seção 1: Notícias Globais e Locais -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-                    <div class="lg:col-span-2 space-y-6">
-                        <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span> Notícias Urgentes do Clima
-                        </h3>
-                        <!-- Card Noticia 1 -->
-                        <div class="bg-white border border-slate-100 p-6 rounded-3xl shadow-sm hover:shadow-md transition">
-                            <span class="text-[10px] font-bold text-red-600 bg-red-50 px-2.5 py-1 rounded-md uppercase">Ondas de Calor</span>
-                            <h4 class="text-lg font-bold text-slate-900 mt-3">Registros globais quebram marcas consecutivas de temperatura</h4>
-                            <p class="text-slate-500 text-sm mt-1.5 leading-relaxed">Estudos comprovam que o aquecimento dos oceanos atingiu taxas sem precedentes, intensificando a severidade de furacões e tempestades tropicais em áreas continentais vulneráveis.</p>
-                            <span class="block text-xs text-slate-400 mt-4">Fonte: IPCC / OMM &bull; Atualizado recentemente</span>
-                        </div>
-                        <!-- Card Noticia 2 -->
-                        <div class="bg-white border border-slate-100 p-6 rounded-3xl shadow-sm hover:shadow-md transition">
-                            <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md uppercase">Região Costeira</span>
-                            <h4 class="text-lg font-bold text-slate-900 mt-3">Elevação das marés começa a ameaçar infraestruturas costeiras no país</h4>
-                            <p class="text-slate-500 text-sm mt-1.5 leading-relaxed">Inundações provocadas por marés altas recorrentes demonstram a urgência de planejamento urbano regenerativo e contenções ecológicas no litoral brasileiro.</p>
-                            <span class="block text-xs text-slate-400 mt-4">Fonte: INPE &bull; Há 2 dias</span>
-                        </div>
-                    </div>
-
-                    <!-- Seção "Aprenda em 5 Minutos" (Cards Didáticos de Resposta Rápida) -->
-                    <div class="bg-emerald-900 text-white rounded-3xl p-8 flex flex-col justify-between">
-                        <div>
-                            <span class="text-[10px] font-bold bg-white/10 text-brand-300 px-3 py-1.5 rounded-md uppercase">Estudo Rápido</span>
-                            <h3 class="text-2xl font-extrabold text-white mt-4 mb-6">Aprenda em 5 Minutos</h3>
-                            
-                            <div class="space-y-6">
-                                <div class="border-l-2 border-brand-400 pl-4">
-                                    <h4 class="font-bold text-white text-sm">O que é Efeito Estufa?</h4>
-                                    <p class="text-xs text-emerald-100 mt-1">Um processo natural que aquece o planeta, mas intensificado pela queima exagerada de carvão e petróleo por indústrias e frotas de automóveis.</p>
-                                </div>
-                                <div class="border-l-2 border-brand-400 pl-4">
-                                    <h4 class="font-bold text-white text-sm">O que é Pegada de Carbono?</h4>
-                                    <p class="text-xs text-emerald-100 mt-1">A quantidade total de gases poluentes liberados no ambiente pelas nossas escolhas de consumo cotidianas.</p>
-                                </div>
-                                <div class="border-l-2 border-brand-400 pl-4">
-                                    <h4 class="font-bold text-white text-sm">Soluções na Prática</h4>
-                                    <p class="text-xs text-emerald-100 mt-1">Troca por combustíveis limpos, consumo de alimentos regionais, compostagem total de sobras e plantio constante.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-8 pt-4 border-t border-white/10 text-xs text-emerald-200">
-                            Mais detalhes científicos nos Relatórios Oficiais.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Painel de Soluções Sustentáveis Modernas -->
-                <div class="bg-slate-100 rounded-3xl p-8 sm:p-12">
-                    <h3 class="text-2xl font-extrabold text-slate-900 mb-8 text-center">Inovações Ecológicas Viáveis</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200/50">
-                            <i class="fa-solid fa-sun text-amber-500 text-3xl mb-4"></i>
-                            <h4 class="font-bold text-slate-900 text-base mb-2">Energia Solar Integrada</h4>
-                            <p class="text-slate-500 text-xs leading-relaxed">Captura de energia limpa inesgotável para abastecimento residencial e comunitário, reduzindo redes hidrelétricas complexas.</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200/50">
-                            <i class="fa-solid fa-droplet text-blue-500 text-3xl mb-4"></i>
-                            <h4 class="font-bold text-slate-900 text-base mb-2">Captação de Chuva</h4>
-                            <p class="text-slate-500 text-xs leading-relaxed">Sistemas simples de cisternas domésticas filtrantes para aproveitar águas pluviais em irrigações e limpezas externas.</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200/50">
-                            <i class="fa-solid fa-recycle text-emerald-600 text-3xl mb-4"></i>
-                            <h4 class="font-bold text-slate-900 text-base mb-2">Compostagem Avançada</h4>
-                            <p class="text-slate-500 text-xs leading-relaxed">Reciclagem de cascas e casulos alimentares de cozinha que iriam sobrecarregar lixões em adubos férteis.</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-2xl border border-slate-200/50">
-                            <i class="fa-solid fa-cart-shopping text-cyan-600 text-3xl mb-4"></i>
-                            <h4 class="font-bold text-slate-900 text-base mb-2">Consumo Consciente</h4>
-                            <p class="text-slate-500 text-xs leading-relaxed">Eliminar totalmente embalagens de plástico fino, apoiar produtores locais e focar em conserto em vez de descarte.</p>
-                        </div>
-                    </div>
-                </div>
+        <!-- 2. Bóton do Coletivo Ambiental -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between overflow-hidden p-5">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🏅</span>
+              <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">Acessórios</span>
             </div>
-        </section>
-
-
-        <!-- ============================================= -->
-        <!-- 🎮 ESPAÇO INTERATIVO (GAMIFICAÇÃO) -->
-        <!-- ============================================= -->
-        <section id="games-tab" class="tab-content hidden py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1.5 rounded-full">Gamificação Verde</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4">Espaço Interativo de Aprendizado</h2>
-                    <p class="text-slate-600 mt-3 text-sm">Divirta-se jogando nossos desafios exclusivos! Cada jogo completo concede Sementes Virtuais para subir de nível e liderar o Ranking Verde.</p>
-                </div>
-
-                <!-- Seletor de Jogo -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                    <!-- Jogo 1 Card: Missão Carbono Zero -->
-                    <div class="bg-white rounded-3xl border border-slate-100 shadow-lg p-8 hover:border-brand-500 transition duration-300">
-                        <div class="flex items-start justify-between">
-                            <div class="bg-emerald-50 text-brand-600 w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
-                                <i class="fa-solid fa-city text-2xl"></i>
-                            </div>
-                            <span class="text-[10px] font-bold text-brand-700 bg-brand-100 px-2.5 py-1 rounded-md">Simulador de Decisão</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Missão Carbono Zero</h3>
-                        <p class="text-slate-600 text-xs leading-relaxed mb-6">Ajude a planejar uma cidade hipotética! Tome as decisões certas sobre transporte, energia e resíduos para reduzir as emissões.</p>
-                        <button onclick="startCarbonGame()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-6 rounded-xl text-sm transition-all shadow-md shadow-brand-100">
-                            Iniciar Missão
-                        </button>
-                    </div>
-
-                    <!-- Jogo 2 Card: Quiz Climático -->
-                    <div class="bg-white rounded-3xl border border-slate-100 shadow-lg p-8 hover:border-brand-500 transition duration-300">
-                        <div class="flex items-start justify-between">
-                            <div class="bg-amber-50 text-amber-600 w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
-                                <i class="fa-solid fa-circle-question text-2xl"></i>
-                            </div>
-                            <span class="text-[10px] font-bold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-md">Quiz Rápido</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">Quiz Climático</h3>
-                        <p class="text-slate-600 text-xs leading-relaxed mb-6">Teste seus conhecimentos ecológicos em uma série de perguntas desafiadoras. Quanto mais acertar, mais pontos ganhará!</p>
-                        <button onclick="startQuizGame()" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-xl text-sm transition-all shadow-md shadow-amber-100">
-                            Jogar Quiz
-                        </button>
-                    </div>
-                </div>
-
-                <!-- CONTENEDOR DOS JOGOS -->
-                <div id="gameActiveArea" class="hidden bg-slate-950 text-white rounded-3xl p-8 min-h-[400px] flex flex-col justify-between relative shadow-2xl">
-                    <button onclick="closeActiveGame()" class="absolute top-6 right-6 text-slate-400 hover:text-white bg-white/10 p-2.5 rounded-xl">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-
-                    <!-- Jogo 1: Missão Carbono Zero (Área Ativa) -->
-                    <div id="carbonZeroActive" class="hidden space-y-6">
-                        <div class="flex items-center gap-2 border-b border-white/10 pb-4 mb-4">
-                            <i class="fa-solid fa-city text-brand-400"></i>
-                            <h4 class="font-extrabold text-lg">Simulador Carbono Zero</h4>
-                        </div>
-                        <p class="text-sm text-slate-300 leading-relaxed max-w-2xl">A cidade fictícia de "Verdepólis" consome muita energia suja, gera lixo descontrolado e tem frotas pesadas a diesel. Faça sua escolha abaixo para reformar o local!</p>
-                        
-                        <!-- Etapas do Jogo -->
-                        <div id="carbonStepContainer" class="space-y-4">
-                            <!-- Etapa 1 -->
-                            <div id="carbonStep1" class="space-y-4">
-                                <h5 class="text-base font-bold text-amber-300">Decisão 1: O que fazer com a matriz energética de Verdepólis?</h5>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <button onclick="chooseCarbon(1, 'solar', 50)" class="text-left bg-white/5 border border-white/10 hover:bg-white/10 p-5 rounded-2xl transition">
-                                        <p class="font-bold text-sm text-white">Instalar painéis solares nas residências e escolas.</p>
-                                        <p class="text-[11px] text-emerald-400 mt-2 font-bold"><i class="fa-solid fa-seedling"></i> +50 Sementes / Reduz Carbono</p>
-                                    </button>
-                                    <button onclick="chooseCarbon(1, 'gas', 15)" class="text-left bg-white/5 border border-white/10 hover:bg-white/10 p-5 rounded-2xl transition">
-                                        <p class="font-bold text-sm text-white">Substituir carvão por gás natural canalizado.</p>
-                                        <p class="text-[11px] text-amber-400 mt-2 font-bold"><i class="fa-solid fa-seedling"></i> +15 Sementes / Redução Moderada</p>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Etapa 2 -->
-                            <div id="carbonStep2" class="hidden space-y-4">
-                                <h5 class="text-base font-bold text-amber-300">Decisão 2: Como otimizar o transporte e mobilidade?</h5>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <button onclick="chooseCarbon(2, 'ciclovia', 50)" class="text-left bg-white/5 border border-white/10 hover:bg-white/10 p-5 rounded-2xl transition">
-                                        <p class="font-bold text-sm text-white">Criar ampla rede de ciclovias e ônibus elétricos.</p>
-                                        <p class="text-[11px] text-emerald-400 mt-2 font-bold"><i class="fa-solid fa-seedling"></i> +50 Sementes / Ar Puro</p>
-                                    </button>
-                                    <button onclick="chooseCarbon(2, 'rodovia', 10)" class="text-left bg-white/5 border border-white/10 hover:bg-white/10 p-5 rounded-2xl transition">
-                                        <p class="font-bold text-sm text-white">Apenas recapear rodovias antigas para evitar lentidão.</p>
-                                        <p class="text-[11px] text-red-400 mt-2 font-bold"><i class="fa-solid fa-seedling"></i> +10 Sementes / Pouco Efeito</p>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Etapa 3 -->
-                            <div id="carbonStep3" class="hidden space-y-4">
-                                <h5 class="text-base font-bold text-amber-300">Decisão 3: Qual destino dar aos resíduos urbanos?</h5>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <button onclick="chooseCarbon(3, 'compostagem', 50)" class="text-left bg-white/5 border border-white/10 hover:bg-white/10 p-5 rounded-2xl transition">
-                                        <p class="font-bold text-sm text-white">Criar usina de compostagem de orgânicos e cooperativa de recicláveis.</p>
-                                        <p class="text-[11px] text-emerald-400 mt-2 font-bold"><i class="fa-solid fa-seedling"></i> +50 Sementes / Economia Circular</p>
-                                    </button>
-                                    <button onclick="chooseCarbon(3, 'aterro', 15)" class="text-left bg-white/5 border border-white/10 hover:bg-white/10 p-5 rounded-2xl transition">
-                                        <p class="font-bold text-sm text-white">Expandir o tamanho do aterro sanitário convencional longe da cidade.</p>
-                                        <p class="text-[11px] text-amber-400 mt-2 font-bold"><i class="fa-solid fa-seedling"></i> +15 Sementes / Paliativo</p>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Finalizador de Jogo -->
-                            <div id="carbonFinish" class="hidden text-center py-6 space-y-4">
-                                <i class="fa-solid fa-circle-check text-emerald-400 text-6xl"></i>
-                                <h5 class="text-xl font-bold text-white">Parabéns! Missão Concluída!</h5>
-                                <p class="text-sm text-slate-300">Suas escolhas reformaram Verdepólis em uma cidade amiga do clima. Sua pontuação final foi computada com sucesso!</p>
-                                <div class="inline-block bg-white/10 px-6 py-2.5 rounded-full font-bold text-sm text-brand-300">
-                                    Sementes Coletadas: <span id="carbonEarnedPoints">0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Jogo 2: Quiz Climático (Área Ativa) -->
-                    <div id="quizActive" class="hidden space-y-6">
-                        <div class="flex items-center gap-2 border-b border-white/10 pb-4 mb-4">
-                            <i class="fa-solid fa-circle-question text-amber-400"></i>
-                            <h4 class="font-extrabold text-lg">Quiz Geração Restauração</h4>
-                        </div>
-
-                        <!-- Pergunta Atual -->
-                        <div id="quizQuestionBox" class="space-y-6">
-                            <h5 class="text-lg font-bold text-white" id="quizQuestionText">Carregando pergunta...</h5>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="quizAnswersGrid">
-                                <!-- Injetado dinamicamente via JS -->
-                            </div>
-                        </div>
-
-                        <!-- Fim do Quiz -->
-                        <div id="quizFinishBox" class="hidden text-center py-8 space-y-4">
-                            <i class="fa-solid fa-trophy text-amber-400 text-6xl"></i>
-                            <h5 class="text-2xl font-bold text-white">Quiz Concluído!</h5>
-                            <p class="text-sm text-slate-300">Você provou que entende sobre a crise climática e as possíveis soluções.</p>
-                            <div class="inline-block bg-white/10 px-6 py-2.5 rounded-full font-bold text-sm text-amber-300">
-                                Sementes Ganhas: <span id="quizEarnedPoints">0</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <h3 class="font-bold text-slate-800 text-base leading-snug mb-1">Bóton do Coletivo Ambiental</h3>
+            <p class="text-xs text-slate-500 mb-4">Pin exclusivo do #GeraçãoRestauração.</p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div>
+              <span class="block text-xs text-slate-400">Valor</span>
+              <span class="text-lg font-extrabold text-slate-900">R$ 5,00</span>
             </div>
-        </section>
-
-
-        <!-- ============================================= -->
-        <!-- 👥 COMUNIDADE GERAÇÃO RESTAURAÇÃO -->
-        <!-- ============================================= -->
-        <section id="comunidade-tab" class="tab-content hidden py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- Esquerda: Informações e Enviar Postagem -->
-                    <div class="space-y-6">
-                        <div class="bg-white border border-slate-100 shadow-lg rounded-3xl p-6">
-                            <h3 class="text-xl font-bold text-slate-900 mb-2">Comunidade Viva</h3>
-                            <p class="text-slate-500 text-xs leading-relaxed mb-6">
-                                Espaço para compartilhar boas práticas ecológicas reais que você ou sua turma realizaram. Publique fotos, incentive colegas e crie ideias!
-                            </p>
-                            
-                            <!-- Formulário de Nova Publicação -->
-                            <form onsubmit="handlePostSubmit(event)" class="space-y-4">
-                                <textarea id="postContent" rows="4" placeholder="Escreva sobre sua ação ambiental hoje (ex: 'Plantamos hortaliças em garrafa PET...')" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <input type="text" id="postAuthor" placeholder="Seu nome" required class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500">
-                                    <input type="text" id="postTopic" placeholder="Tópico (ex: Horta)" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-brand-500">
-                                </div>
-                                <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-4 rounded-xl text-sm transition">
-                                    Publicar Ação Ambiental
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Direita: Feed de Postagens da Comunidade -->
-                    <div class="lg:col-span-2 space-y-6" id="communityFeed">
-                        <!-- Injetado via Javascript para persistência -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ============================================= -->
-        <!-- 🏆 RANKING VERDE -->
-        <!-- ============================================= -->
-        <section id="ranking-tab" class="tab-content hidden py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1.5 rounded-full">Gamificação e Honra</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4">Ranking Verde de Engajamento</h2>
-                    <p class="text-slate-600 mt-3 text-sm">Competição saudável por sustentabilidade. Ganhe pontos ao concluir jogos, quizzes e participar de ações presenciais.</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- Estudantes Destaque -->
-                    <div class="bg-white border border-slate-100 shadow-lg rounded-3xl p-6">
-                        <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
-                            <i class="fa-solid fa-user-graduate text-brand-600"></i> Estudante Destaque
-                        </h3>
-                        <div class="space-y-4" id="studentsRankingContainer">
-                            <!-- Injetado e atualizado via JS -->
-                        </div>
-                    </div>
-
-                    <!-- Turmas Destaque -->
-                    <div class="bg-white border border-slate-100 shadow-lg rounded-3xl p-6">
-                        <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
-                            <i class="fa-solid fa-people-group text-amber-600"></i> Turma Destaque
-                        </h3>
-                        <div class="space-y-4">
-                            <!-- 1º Lugar -->
-                            <div class="flex items-center justify-between bg-amber-50/50 p-3 rounded-2xl border border-amber-100">
-                                <div class="flex items-center gap-3">
-                                    <span class="text-amber-500 font-extrabold text-lg">1º</span>
-                                    <div>
-                                        <p class="font-bold text-xs text-slate-900">2º Ano B - Ensino Médio</p>
-                                        <p class="text-[9px] text-slate-400">Escola Estadual Nova Era</p>
-                                    </div>
-                                </div>
-                                <span class="text-[11px] font-bold text-amber-700">1.820 Sementes</span>
-                            </div>
-                            <!-- 2º Lugar -->
-                            <div class="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50">
-                                <div class="flex items-center gap-3">
-                                    <span class="text-slate-400 font-extrabold text-base">2º</span>
-                                    <div>
-                                        <p class="font-bold text-xs text-slate-900">1º Ano A - Fundamental II</p>
-                                        <p class="text-[9px] text-slate-400">Escola Nova Era</p>
-                                    </div>
-                                </div>
-                                <span class="text-[11px] font-bold text-slate-600">1.450 Sementes</span>
-                            </div>
-                            <!-- 3º Lugar -->
-                            <div class="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50">
-                                <div class="flex items-center gap-3">
-                                    <span class="text-amber-700 font-extrabold text-base">3º</span>
-                                    <div>
-                                        <p class="font-bold text-xs text-slate-900">3º Ano C - Ensino Médio</p>
-                                        <p class="text-[9px] text-slate-400">Colégio Integral Paulista</p>
-                                    </div>
-                                </div>
-                                <span class="text-[11px] font-bold text-slate-600">1.200 Sementes</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Escolas Destaque -->
-                    <div class="bg-white border border-slate-100 shadow-lg rounded-3xl p-6">
-                        <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
-                            <i class="fa-solid fa-school text-cyan-600"></i> Escola Destaque
-                        </h3>
-                        <div class="space-y-4">
-                            <!-- 1º Lugar -->
-                            <div class="flex items-center justify-between bg-cyan-50/50 p-3 rounded-2xl border border-cyan-100">
-                                <div class="flex items-center gap-3">
-                                    <span class="text-amber-500 font-extrabold text-lg">1º</span>
-                                    <div>
-                                        <p class="font-bold text-xs text-slate-900">E.E. Nova Era</p>
-                                        <p class="text-[9px] text-slate-400">Rede Estadual de Ensino</p>
-                                    </div>
-                                </div>
-                                <span class="text-[11px] font-bold text-cyan-700">4.120 Sementes</span>
-                            </div>
-                            <!-- 2º Lugar -->
-                            <div class="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50">
-                                <div class="flex items-center gap-3">
-                                    <span class="text-slate-400 font-extrabold text-base">2º</span>
-                                    <div>
-                                        <p class="font-bold text-xs text-slate-900">E.M. Dom Pedro II</p>
-                                        <p class="text-[9px] text-slate-400">Rede Municipal de Ensino</p>
-                                    </div>
-                                </div>
-                                <span class="text-[11px] font-bold text-slate-600">3.560 Sementes</span>
-                            </div>
-                            <!-- 3º Lugar -->
-                            <div class="flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50">
-                                <div class="flex items-center gap-3">
-                                    <span class="text-amber-700 font-extrabold text-base">3º</span>
-                                    <div>
-                                        <p class="font-bold text-xs text-slate-900">Colégio Integral Paulista</p>
-                                        <p class="text-[9px] text-slate-400">Rede Privada</p>
-                                    </div>
-                                </div>
-                                <span class="text-[11px] font-bold text-slate-600">2.950 Sementes</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ============================================= -->
-        <!-- 📅 AGENDA AMBIENTAL -->
-        <!-- ============================================= -->
-        <section id="agenda-tab" class="tab-content hidden py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1.5 rounded-full">Próximas Atividades</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4">Agenda Climática Ativa</h2>
-                    <p class="text-slate-600 mt-3 text-sm">Não fique de fora. Inscreva-se em nossos mutirões, plantios e feiras científicas gratuitamente!</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- Lista de Eventos -->
-                    <div class="lg:col-span-2 space-y-6">
-                        <!-- Evento 1 -->
-                        <div class="bg-white border border-slate-100 p-6 rounded-3xl shadow-sm hover:shadow-md transition flex flex-col sm:flex-row items-start gap-4 justify-between">
-                            <div class="flex items-start gap-4">
-                                <div class="bg-brand-50 text-brand-600 px-4 py-3 rounded-2xl text-center min-w-[70px]">
-                                    <span class="block text-xl font-black">15</span>
-                                    <span class="block text-[10px] font-bold uppercase">Julho</span>
-                                </div>
-                                <div>
-                                    <span class="text-[10px] font-bold text-brand-600 uppercase">Mutirão Presencial</span>
-                                    <h4 class="text-lg font-bold text-slate-900 mt-1">Grande Plantio de Árvores Urbanas</h4>
-                                    <p class="text-slate-500 text-xs mt-1"><i class="fa-solid fa-location-dot"></i> Parque Municipal das Nascentes, 08:30h</p>
-                                </div>
-                            </div>
-                            <button onclick="openJoinEventModal('Grande Plantio de Árvores')" class="mt-4 sm:mt-0 bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-5 rounded-xl text-xs transition">
-                                Inscrever-se
-                            </button>
-                        </div>
-
-                        <!-- Evento 2 -->
-                        <div class="bg-white border border-slate-100 p-6 rounded-3xl shadow-sm hover:shadow-md transition flex flex-col sm:flex-row items-start gap-4 justify-between">
-                            <div class="flex items-start gap-4">
-                                <div class="bg-amber-50 text-amber-600 px-4 py-3 rounded-2xl text-center min-w-[70px]">
-                                    <span class="block text-xl font-black">22</span>
-                                    <span class="block text-[10px] font-bold uppercase">Julho</span>
-                                </div>
-                                <div>
-                                    <span class="text-[10px] font-bold text-amber-600 uppercase">Oficina Científica</span>
-                                    <h4 class="text-lg font-bold text-slate-900 mt-1">Como criar sua própria composteira caseira</h4>
-                                    <p class="text-slate-500 text-xs mt-1"><i class="fa-solid fa-location-dot"></i> Laboratório Integrado de Tecnologia, 14:00h</p>
-                                </div>
-                            </div>
-                            <button onclick="openJoinEventModal('Oficina de Composteira')" class="mt-4 sm:mt-0 bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-5 rounded-xl text-xs transition">
-                                Inscrever-se
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Formulário de Inscrição no Painel de Eventos -->
-                    <div id="joinEventBox" class="bg-gradient-to-b from-slate-900 to-emerald-950 text-white p-8 rounded-3xl shadow-xl flex flex-col justify-between min-h-[350px]">
-                        <div>
-                            <span class="text-[10px] font-bold text-brand-300 uppercase">Formulário Rápido</span>
-                            <h3 class="text-xl font-bold mt-2">Inscrição de Voluntariado</h3>
-                            <p class="text-slate-300 text-xs mt-2 leading-relaxed" id="selectedEventText">Selecione um evento na lista para se registrar.</p>
-                            
-                            <form id="joinEventForm" onsubmit="handleEventRegister(event)" class="space-y-4 mt-6 hidden">
-                                <input type="hidden" id="eventSelectedHidden">
-                                <input type="text" id="eventAttendeeName" placeholder="Seu nome" required class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-xs placeholder-white/50 text-white focus:outline-none">
-                                <input type="email" id="eventAttendeeEmail" placeholder="Seu e-mail" required class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-xs placeholder-white/50 text-white focus:outline-none">
-                                <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 rounded-xl text-xs transition">
-                                    Confirmar minha vaga!
-                                </button>
-                            </form>
-                        </div>
-                        <p class="text-[10px] text-slate-400 mt-4">&bull; Certificado digital de horas de voluntariado será gerado ao final das atividades presenciais.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ============================================= -->
-        <!-- 📊 PAINEL DE IMPACTO -->
-        <!-- ============================================= -->
-        <section id="impacto-tab" class="tab-content hidden py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1.5 rounded-full">Transparência Ecológica</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4">Painel de Impacto Ambiental</h2>
-                    <p class="text-slate-600 mt-3 text-sm">Nossas ações em dados reais. Acompanhe a evolução do coletivo e veja como cada pequena atitude gera resultados impressionantes.</p>
-                </div>
-
-                <!-- Indicadores Rápidos -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center">
-                        <span class="text-emerald-500 text-4xl mb-3 block"><i class="fa-solid fa-tree"></i></span>
-                        <p class="text-slate-400 text-xs font-bold uppercase">Árvores Plantadas</p>
-                        <p class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">1.250</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center">
-                        <span class="text-amber-500 text-4xl mb-3 block"><i class="fa-solid fa-trash-arrow-up"></i></span>
-                        <p class="text-slate-400 text-xs font-bold uppercase">Resíduos Recolhidos</p>
-                        <p class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">1.840kg</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center">
-                        <span class="text-cyan-500 text-4xl mb-3 block"><i class="fa-solid fa-users"></i></span>
-                        <p class="text-slate-400 text-xs font-bold uppercase">Impactados diretamente</p>
-                        <p class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">2.500+</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm text-center">
-                        <span class="text-rose-500 text-4xl mb-3 block"><i class="fa-solid fa-clock"></i></span>
-                        <p class="text-slate-400 text-xs font-bold uppercase">Horas Voluntariado</p>
-                        <p class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">420h</p>
-                    </div>
-                </div>
-
-                <!-- Gráficos Gerados Dinamicamente (Chart.js) -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-lg">
-                        <h3 class="text-lg font-bold text-slate-900 mb-4">Plantio Anual de Espécies Nativas</h3>
-                        <canvas id="treesChart" class="w-full h-64"></canvas>
-                    </div>
-                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-lg">
-                        <h3 class="text-lg font-bold text-slate-900 mb-4">Categorias de Resíduos Desviados do Aterro</h3>
-                        <canvas id="wasteChart" class="w-full h-64"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER / ENCERRAMENTO -->
-    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <div>
-                    <h4 class="text-white font-bold text-lg mb-4">Geração Restauração</h4>
-                    <p class="text-xs leading-relaxed max-w-sm">
-                        O Portal Geração Restauração não é apenas um site. É uma comunidade digital ativa que integra educação, ciência e ação direta para regenerar a vida planetária e combater os piores efeitos do aquecimento global.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Navegação Rápida</h4>
-                    <ul class="space-y-2 text-xs">
-                        <li><button onclick="switchTab('inicio')" class="hover:text-white transition">Início / Quem Somos</button></li>
-                        <li><button onclick="switchTab('projetos')" class="hover:text-white transition">Nossos Projetos</button></li>
-                        <li><button onclick="switchTab('loja')" class="hover:text-white transition">Loja Sustentável</button></li>
-                        <li><button onclick="switchTab('crise')" class="hover:text-white transition">Crise Climática</button></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Inicie sua Jornada</h4>
-                    <p class="text-xs leading-relaxed mb-4">Ganhe Sementes Virtuais respondendo ao Quiz Ecológico e ajude em mutirões reais.</p>
-                    <button onclick="switchTab('games')" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition">
-                        Começar a Jogar
-                    </button>
-                </div>
-            </div>
-
-            <div class="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span class="text-xs">© 2026 Coletivo Geração Restauração. Licenciado sob termos ecológicos abertos.</span>
-                <div class="flex space-x-4">
-                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram text-lg"></i></a>
-                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-youtube text-lg"></i></a>
-                </div>
-            </div>
+            <button onclick="adicionarAoCarrinho('Bóton do Coletivo Ambiental', 5.00)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-3.5 py-2.5 rounded-xl transition shadow-sm active:scale-95">
+              + Adicionar
+            </button>
+          </div>
         </div>
-    </footer>
 
-
-    <!-- ============================================= -->
-    <!-- LÓGICA E SCRIPT COMPLETO DA PLATAFORMA -->
-    <!-- ============================================= -->
-    <script>
-        // ESTADO GLOBAL DO USUÁRIO (COM LOCALSTORAGE PARA PERSISTÊNCIA NA VERCEL)
-        let userState = {
-            points: 120,
-            posts: [
-                {
-                    author: "Mariana Santos",
-                    school: "Escola Municipal Dom Pedro II",
-                    content: "Hoje coletamos mais de 45 garrafas plásticas ao redor do ribeirão e iniciamos a confecção de canteiros suspensos de temperos na nossa escola. Super orgulhosa do nosso grupo! 🌱🌎",
-                    likes: 12,
-                    topic: "HortaEscolar",
-                    time: "Há 1 hora",
-                    likedByMe: false
-                },
-                {
-                    author: "Thiago Oliveira",
-                    school: "Estudante Independente",
-                    content: "Comecei meu sistema de compostagem caseiro usando baldes descartáveis de padaria de acordo com as especificações científicas da central. Não gera mau cheiro nenhum e as plantas da minha mãe já estão adorando o biofertilizante líquido!",
-                    likes: 8,
-                    topic: "Compostagem",
-                    time: "Ontem",
-                    likedByMe: false
-                }
-            ]
-        };
-
-        // Carregar do LocalStorage se existir
-        function loadSavedData() {
-            const saved = localStorage.getItem('geracao_restauracao_state');
-            if (saved) {
-                try {
-                    userState = JSON.parse(saved);
-                } catch(e) {
-                    console.error("Erro ao ler dados salvos:", e);
-                }
-            }
-            updatePointsHeader();
-            renderCommunityFeed();
-            renderStudentsRanking();
-        }
-
-        // Salvar dados no LocalStorage
-        function saveData() {
-            localStorage.setItem('geracao_restauracao_state', JSON.stringify(userState));
-        }
-
-        function updatePointsHeader() {
-            document.getElementById('userPointsHeader').innerText = userState.points;
-        }
-
-        // CONTROLE DE NAVEGAÇÃO DE TABS
-        function switchTab(tabId) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => {
-                content.classList.add('hidden');
-                content.classList.remove('block');
-            });
-
-            const targetTab = document.getElementById(tabId + '-tab');
-            if (targetTab) {
-                targetTab.classList.remove('hidden');
-                targetTab.classList.add('block');
-            }
-
-            const navButtons = document.querySelectorAll('.nav-btn');
-            navButtons.forEach(btn => {
-                if (btn.getAttribute('data-tab') === tabId) {
-                    btn.classList.remove('text-slate-600', 'hover:text-brand-600', 'hover:bg-slate-50');
-                    btn.classList.add('text-brand-700', 'bg-brand-50');
-                } else {
-                    btn.classList.add('text-slate-600', 'hover:text-brand-600', 'hover:bg-slate-50');
-                    btn.classList.remove('text-brand-700', 'bg-brand-50');
-                }
-            });
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // MENU RESPONSIVO MOBILE
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('menu-icon');
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                icon.className = 'fa-solid fa-xmark text-xl';
-            } else {
-                menu.classList.add('hidden');
-                icon.className = 'fa-solid fa-bars text-xl';
-            }
-        }
-
-        // SISTEMA DE NOTIFICAÇÃO (TOAST)
-        function showNotification(msg, isSuccess = true) {
-            const toast = document.getElementById('toastNotification');
-            const toastMsg = document.getElementById('toastMessage');
-            const toastIcon = document.getElementById('toastIcon');
-
-            toastMsg.innerText = msg;
-            if (isSuccess) {
-                toastIcon.innerHTML = '<i class="fa-solid fa-seedling text-brand-400"></i>';
-            } else {
-                toastIcon.innerHTML = '<i class="fa-solid fa-circle-exclamation text-amber-500"></i>';
-            }
-
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        }
-
-        // MAPA INTERATIVO INÍCIO
-        function showMapPoint(id, title, desc, region) {
-            document.getElementById('mapTitle').innerText = title;
-            document.getElementById('mapDescription').innerText = desc;
-            document.getElementById('mapRegion').innerText = region;
-            
-            showNotification(`Exibindo detalhes de: ${title}`);
-        }
-
-        // FILTRAGEM DE PROJETOS
-        function filterProjects(category) {
-            const cards = document.querySelectorAll('.project-card');
-            cards.forEach(card => {
-                if (category === 'todos' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            const buttons = document.querySelectorAll('.project-filter-btn');
-            buttons.forEach(btn => {
-                if (btn.getAttribute('data-filter') === category) {
-                    btn.className = 'project-filter-btn px-5 py-2.5 rounded-full text-sm font-bold bg-brand-600 text-white transition shadow';
-                } else {
-                    btn.className = 'project-filter-btn px-5 py-2.5 rounded-full text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:border-brand-500 transition';
-                }
-            });
-        }
-
-
-        // =============================================
-        // LOJA SUSTENTÁVEL E SISTEMA DE CARRINHO
-        // =============================================
-        let cart = [];
-
-        function addToCart(productName, price) {
-            const existingItem = cart.find(item => item.name === productName);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ name: productName, price: price, quantity: 1 });
-            }
-
-            updateCartUI();
-            showNotification(`${productName} adicionado ao carrinho!`);
-        }
-
-        function updateCartUI() {
-            const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
-            document.getElementById('cartBadgeCount').innerText = totalItems;
-
-            const list = document.getElementById('cartItemsList');
-            if (cart.length === 0) {
-                list.innerHTML = '<p class="text-slate-400 text-sm text-center py-8">Seu carrinho está vazio.</p>';
-                document.getElementById('cartTotalPrice').innerText = 'R$ 0,00';
-                return;
-            }
-
-            let html = '';
-            let total = 0;
-            cart.forEach((item, index) => {
-                const subtotal = item.price * item.quantity;
-                total += subtotal;
-                html += `
-                    <div class="flex items-center justify-between border-b border-slate-50 pb-3">
-                        <div>
-                            <p class="font-bold text-slate-900 text-sm">${item.name}</p>
-                            <p class="text-slate-500 text-xs">R$ ${item.price.toFixed(2)} x ${item.quantity}</p>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-bold text-slate-900 text-sm">R$ ${subtotal.toFixed(2)}</span>
-                            <button onclick="removeFromCart(${index})" class="text-rose-500 hover:text-rose-700 p-1.5 rounded bg-rose-50">
-                                <i class="fa-solid fa-trash text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-
-            list.innerHTML = html;
-            document.getElementById('cartTotalPrice').innerText = `R$ ${total.toFixed(2)}`;
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-            showNotification('Item removido do carrinho.', false);
-        }
-
-        function toggleCartModal() {
-            const modal = document.getElementById('cartModal');
-            modal.classList.toggle('hidden');
-        }
-
-        function checkoutCart() {
-            if (cart.length === 0) {
-                showNotification('Não há produtos para finalizar.', false);
-                return;
-            }
-            showNotification('Pedido recebido! Simulando faturamento e separação ambiental...');
-            cart = [];
-            updateCartUI();
-            toggleCartModal();
-        }
-
-        function handleCustomOrder(e) {
-            e.preventDefault();
-            const name = document.getElementById('customName').value;
-            showNotification(`Proposta enviada, ${name}! Responderemos no seu e-mail.`);
-            document.getElementById('orderCustomForm').reset();
-        }
-
-
-        // =============================================
-        // GAMIFICAÇÃO & CONTROLE DE PONTUAÇÃO
-        // =============================================
-        function addPoints(pts) {
-            userState.points += pts;
-            updatePointsHeader();
-            saveData();
-            renderStudentsRanking();
-            showNotification(`Você ganhou +${pts} sementes ecológicas! 🌱`);
-        }
-
-        function closeActiveGame() {
-            document.getElementById('gameActiveArea').classList.add('hidden');
-            document.getElementById('carbonZeroActive').classList.add('hidden');
-            document.getElementById('quizActive').classList.add('hidden');
-        }
-
-        // JOGO 1: SIMULADOR CARBONO ZERO
-        function startCarbonGame() {
-            document.getElementById('gameActiveArea').classList.remove('hidden');
-            document.getElementById('carbonZeroActive').classList.remove('hidden');
-            document.getElementById('quizActive').classList.add('hidden');
-
-            document.getElementById('carbonStep1').classList.remove('hidden');
-            document.getElementById('carbonStep2').classList.add('hidden');
-            document.getElementById('carbonStep3').classList.add('hidden');
-            document.getElementById('carbonFinish').classList.add('hidden');
-            totalCarbonPoints = 0;
-        }
-
-        let totalCarbonPoints = 0;
-        function chooseCarbon(step, choice, points) {
-            totalCarbonPoints += points;
-            if (step === 1) {
-                document.getElementById('carbonStep1').classList.add('hidden');
-                document.getElementById('carbonStep2').classList.remove('hidden');
-            } else if (step === 2) {
-                document.getElementById('carbonStep2').classList.add('hidden');
-                document.getElementById('carbonStep3').classList.remove('hidden');
-            } else if (step === 3) {
-                document.getElementById('carbonStep3').classList.add('hidden');
-                document.getElementById('carbonFinish').classList.remove('hidden');
-                document.getElementById('carbonEarnedPoints').innerText = totalCarbonPoints;
-                addPoints(totalCarbonPoints);
-            }
-        }
-
-        // JOGO 2: QUIZ CLIMÁTICO
-        const quizQuestions = [
-            {
-                q: "Qual gás de efeito estufa é liberado em abundância pelo descarte incorreto de restos de comida em lixões?",
-                options: ["Gás Metano (CH₄)", "Oxigênio (O₂)", "Gás Hélio (He)", "Nitrogênio (N₂)"],
-                correct: 0,
-                points: 20
-            },
-            {
-                q: "Qual destas práticas ajuda a conter a erosão do solo nas margens de córregos e rios?",
-                options: ["Pavimentar as margens", "Replantar a mata ciliar", "Instalar cercas de arame", "Despejar pedregulhos livres"],
-                correct: 1,
-                points: 20
-            },
-            {
-                q: "A economia circular tem como principal diretriz:",
-                options: ["Acelerar o consumo rápido", "Substituir produtos por itens novos", "Eliminar desperdício e regenerar sistemas naturais", "Focar apenas em reciclagem plástica sem diminuir produção"],
-                correct: 2,
-                points: 20
-            }
-        ];
-
-        let currentQuizIndex = 0;
-        let totalQuizPoints = 0;
-
-        function startQuizGame() {
-            document.getElementById('gameActiveArea').classList.remove('hidden');
-            document.getElementById('quizActive').classList.remove('hidden');
-            document.getElementById('carbonZeroActive').classList.add('hidden');
-
-            currentQuizIndex = 0;
-            totalQuizPoints = 0;
-            loadQuizQuestion();
-        }
-
-        function loadQuizQuestion() {
-            document.getElementById('quizQuestionBox').classList.remove('hidden');
-            document.getElementById('quizFinishBox').classList.add('hidden');
-
-            const current = quizQuestions[currentQuizIndex];
-            document.getElementById('quizQuestionText').innerText = current.q;
-
-            const grid = document.getElementById('quizAnswersGrid');
-            grid.innerHTML = '';
-
-            current.options.forEach((opt, idx) => {
-                grid.innerHTML += `
-                    <button onclick="chooseQuiz(${idx})" class="text-left bg-white/5 border border-white/10 hover:bg-white/10 p-5 rounded-2xl transition w-full text-sm">
-                        ${opt}
-                    </button>
-                `;
-            });
-        }
-
-        function chooseQuiz(selectedIdx) {
-            const current = quizQuestions[currentQuizIndex];
-            if (selectedIdx === current.correct) {
-                totalQuizPoints += current.points;
-                showNotification('Resposta Correta!', true);
-            } else {
-                showNotification('Ops! Resposta errada, continue jogando.', false);
-            }
-
-            currentQuizIndex++;
-            if (currentQuizIndex < quizQuestions.length) {
-                loadQuizQuestion();
-            } else {
-                document.getElementById('quizQuestionBox').classList.add('hidden');
-                document.getElementById('quizFinishBox').classList.remove('hidden');
-                document.getElementById('quizEarnedPoints').innerText = totalQuizPoints;
-                addPoints(totalQuizPoints);
-            }
-        }
-
-
-        // =============================================
-        // COMUNIDADE FEED E POSTAGENS PERSISTENTES
-        // =============================================
-        function renderCommunityFeed() {
-            const feed = document.getElementById('communityFeed');
-            feed.innerHTML = '';
-            
-            userState.posts.forEach((post, index) => {
-                const authorInitial = post.author.slice(0, 2).toUpperCase();
-                const likeActiveColor = post.likedByMe ? 'text-brand-600 font-extrabold' : 'text-slate-400 hover:text-brand-600';
-                
-                feed.innerHTML += `
-                    <div class="bg-white border border-slate-100 shadow-md p-6 rounded-3xl">
-                        <div class="flex items-center space-x-3 mb-4">
-                            <div class="h-10 w-10 bg-emerald-100 text-brand-600 font-bold rounded-full flex items-center justify-center text-xs">
-                                ${authorInitial}
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900 text-sm">${post.author}</h4>
-                                <span class="text-[10px] text-slate-400">${post.school} &bull; ${post.time}</span>
-                            </div>
-                        </div>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                            ${post.content}
-                        </p>
-                        <div class="flex items-center justify-between text-xs">
-                            <button onclick="likePost(${index})" class="flex items-center gap-1.5 transition ${likeActiveColor}">
-                                <i class="fa-solid fa-thumbs-up"></i> <span>${post.likes}</span> Curtidas
-                            </button>
-                            <span class="bg-brand-50 text-brand-600 px-2 py-0.5 rounded text-[10px] font-bold">#${post.topic}</span>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function handlePostSubmit(e) {
-            e.preventDefault();
-            const content = document.getElementById('postContent').value;
-            const author = document.getElementById('postAuthor').value;
-            const topic = document.getElementById('postTopic').value || 'AçãoVerde';
-
-            const newPost = {
-                author: author,
-                school: "Estudante Geração Restauração",
-                content: content,
-                likes: 0,
-                topic: topic,
-                time: "Agora mesmo",
-                likedByMe: false
-            };
-
-            // Adiciona no início da lista
-            userState.posts.unshift(newPost);
-            saveData();
-            renderCommunityFeed();
-
-            document.getElementById('postContent').value = '';
-            document.getElementById('postTopic').value = '';
-            
-            showNotification('Seu post foi publicado e salvo!', true);
-            addPoints(15); // Recompensa em sementes
-        }
-
-        function likePost(index) {
-            const post = userState.posts[index];
-            if (post.likedByMe) {
-                post.likes -= 1;
-                post.likedByMe = false;
-                showNotification('Você removeu seu apoio.', false);
-            } else {
-                post.likes += 1;
-                post.likedByMe = true;
-                showNotification('Você apoiou essa atitude ecológica!');
-            }
-            saveData();
-            renderCommunityFeed();
-        }
-
-        // =============================================
-        // RANKING DINÂMICO
-        // =============================================
-        function renderStudentsRanking() {
-            const container = document.getElementById('studentsRankingContainer');
-            if (!container) return;
-
-            // Criar lista de estudantes simulados mais o usuário logado
-            const baseStudents = [
-                { name: "Beatriz Alves", school: "Escola Nova Era", points: 450, position: 1, isMe: false },
-                { name: "Você (Jovem Protetor)", school: "Portal Online", points: userState.points, position: 2, isMe: true },
-                { name: "Guilherme Vieira", school: "Escola Dom Pedro", points: 380, position: 3, isMe: false },
-                { name: "Mariana Silva", school: "Escola Dom Pedro", points: 340, position: 4, isMe: false }
-            ];
-
-            // Ordenar por pontuação decrescente
-            baseStudents.sort((a, b) => b.points - a.points);
-
-            let html = '';
-            baseStudents.forEach((student, idx) => {
-                const currentPos = idx + 1;
-                const positionStyle = currentPos === 1 ? 'text-amber-500 font-extrabold text-lg' : 'text-slate-400 font-extrabold text-base';
-                const bgStyle = student.isMe ? 'bg-brand-50/70 border border-brand-200' : 'hover:bg-slate-50';
-                
-                html += `
-                    <div class="flex items-center justify-between p-3 rounded-2xl ${bgStyle}">
-                        <div class="flex items-center gap-3">
-                            <span class="${positionStyle}">${currentPos}º</span>
-                            <div>
-                                <p class="font-bold text-xs text-slate-900">${student.name}</p>
-                                <p class="text-[9px] text-slate-400">${student.school}</p>
-                            </div>
-                        </div>
-                        <span class="text-[11px] font-bold text-brand-600">${student.points} Sementes</span>
-                    </div>
-                `;
-            });
-
-            container.innerHTML = html;
-        }
-
-
-        // =============================================
-        // REGISTRO EM AGENDA DE EVENTOS
-        // =============================================
-        function openJoinEventModal(eventName) {
-            document.getElementById('selectedEventText').innerText = `Você escolheu participar de: ${eventName}. Por favor, confirme seus dados:`;
-            document.getElementById('eventSelectedHidden').value = eventName;
-            document.getElementById('joinEventForm').classList.remove('hidden');
-
-            document.getElementById('joinEventBox').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function handleEventRegister(e) {
-            e.preventDefault();
-            const eventName = document.getElementById('eventSelectedHidden').value;
-            const name = document.getElementById('eventAttendeeName').value;
-
-            showNotification(`Inscrição confirmada para "${eventName}", ${name}! Te aguardamos.`);
-            document.getElementById('joinEventForm').reset();
-            document.getElementById('joinEventForm').classList.add('hidden');
-            document.getElementById('selectedEventText').innerText = 'Selecione um evento na lista para se registrar.';
-        }
-
-
-        // =============================================
-        // GRÁFICOS NO PAINEL DE IMPACTO (CHART.JS)
-        // =============================================
-        window.onload = function() {
-            // Inicializar dados persistidos
-            loadSavedData();
-
-            // Configura Gráfico de Árvores
-            const ctxTrees = document.getElementById('treesChart').getContext('2d');
-            new Chart(ctxTrees, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
-                    datasets: [{
-                        label: 'Árvores Acumuladas',
-                        data: [150, 320, 500, 780, 1020, 1250],
-                        borderColor: '#16a34a',
-                        backgroundColor: 'rgba(22, 163, 74, 0.1)',
-                        tension: 0.3,
-                        fill: true,
-                        borderWidth: 3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: { beginAtZero: true }
-                    }
-                }
-            });
-
-            // Configura Gráfico de Resíduos
-            const ctxWaste = document.getElementById('wasteChart').getContext('2d');
-            new Chart(ctxWaste, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Plásticos', 'Papel/Papelão', 'Lixo Eletrônico', 'Orgânicos (Compostados)'],
-                    datasets: [{
-                        data: [450, 320, 270, 800],
-                        backgroundColor: [
-                            '#06b6d4', // Cyan
-                            '#f59e0b', // Amber
-                            '#6366f1', // Indigo
-                            '#10b981'  // Emerald
-                        ],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: { boxWidth: 12, font: { size: 11 } }
-                        }
-                    }
-                }
-            });
-        };
-    </script>
+        <!-- 3. Muda de árvore nativa -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between overflow-hidden p-5">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🌳</span>
+              <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">Reflorestamento</span>
+            </div>
+            <h3 class="font-bold text-slate-800 text-base leading-snug mb-1">Muda de árvore nativa</h3>
+            <p class="text-xs text-slate-500 mb-4">Muda nativa selecionada e pronta para o plantio.</p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div>
+              <span class="block text-xs text-slate-400">Valor</span>
+              <span class="text-lg font-extrabold text-slate-900">R$ 8,00</span>
+            </div>
+            <button onclick="adicionarAoCarrinho('Muda de árvore nativa', 8.00)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-3.5 py-2.5 rounded-xl transition shadow-sm active:scale-95">
+              + Adicionar
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. Sementes de árvore nativa -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between overflow-hidden p-5">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🌾</span>
+              <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">Biodiversidade</span>
+            </div>
+            <h3 class="font-bold text-slate-800 text-base leading-snug mb-1">Sementes de árvore nativa</h3>
+            <p class="text-xs text-slate-500 mb-4">Pacote de sementes nativas com guia de germinação.</p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div>
+              <span class="block text-xs text-slate-400">Valor</span>
+              <span class="text-lg font-extrabold text-slate-900">R$ 10,00</span>
+            </div>
+            <button onclick="adicionarAoCarrinho('Sementes de árvore nativa', 10.00)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-3.5 py-2.5 rounded-xl transition shadow-sm active:scale-95">
+              + Adicionar
+            </button>
+          </div>
+        </div>
+
+        <!-- 5. Cartilha digital -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between overflow-hidden p-5">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">📄</span>
+              <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">Educação & E-book</span>
+            </div>
+            <h3 class="font-bold text-slate-800 text-base leading-snug mb-1">Cartilha digital</h3>
+            <p class="text-xs text-slate-500 mb-4">Material educativo em PDF com práticas sustentáveis.</p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div>
+              <span class="block text-xs text-slate-400">Valor</span>
+              <span class="text-lg font-extrabold text-slate-900">R$ 20,00</span>
+            </div>
+            <button onclick="adicionarAoCarrinho('Cartilha digital', 20.00)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-3.5 py-2.5 rounded-xl transition shadow-sm active:scale-95">
+              + Adicionar
+            </button>
+          </div>
+        </div>
+
+        <!-- 6. Ecobag -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between overflow-hidden p-5">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🛍️</span>
+              <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">Vestuário & Acessórios</span>
+            </div>
+            <h3 class="font-bold text-slate-800 text-base leading-snug mb-1">Ecobag</h3>
+            <p class="text-xs text-slate-500 mb-4">Sacola ecológica reutilizável do Coletivo Ambiental.</p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div>
+              <span class="block text-xs text-slate-400">Valor</span>
+              <span class="text-lg font-extrabold text-slate-900">R$ 25,00</span>
+            </div>
+            <button onclick="adicionarAoCarrinho('Ecobag', 25.00)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-3.5 py-2.5 rounded-xl transition shadow-sm active:scale-95">
+              + Adicionar
+            </button>
+          </div>
+        </div>
+
+        <!-- 7. Jogo interativo e pedagógico -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between overflow-hidden p-5">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🧩</span>
+              <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">Educação & Gamificação</span>
+            </div>
+            <h3 class="font-bold text-slate-800 text-base leading-snug mb-1">Jogo interativo e pedagógico</h3>
+            <p class="text-xs text-slate-500 mb-4">Atividade lúdica e educativa para família e escolas.</p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div>
+              <span class="block text-xs text-slate-400">Valor</span>
+              <span class="text-lg font-extrabold text-slate-900">R$ 35,00</span>
+            </div>
+            <button onclick="adicionarAoCarrinho('Jogo interativo e pedagógico', 35.00)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-3.5 py-2.5 rounded-xl transition shadow-sm active:scale-95">
+              + Adicionar
+            </button>
+          </div>
+        </div>
+
+        <!-- 8. Camiseta do Coletivo Ambiental -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between overflow-hidden p-5">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">👕</span>
+              <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">Vestuário</span>
+            </div>
+            <h3 class="font-bold text-slate-800 text-base leading-snug mb-1">Camiseta do Coletivo Ambiental</h3>
+            <p class="text-xs text-slate-500 mb-4">Camiseta em algodão sustentável do coletivo.</p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div>
+              <span class="block text-xs text-slate-400">Valor</span>
+              <span class="text-lg font-extrabold text-slate-900">R$ 40,00</span>
+            </div>
+            <button onclick="adicionarAoCarrinho('Camiseta do Coletivo Ambiental', 40.00)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-3.5 py-2.5 rounded-xl transition shadow-sm active:scale-95">
+              + Adicionar
+            </button>
+          </div>
+        </div>
+
+        <!-- 9. Composteira doméstica -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between overflow-hidden p-5">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🪱</span>
+              <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">Gestão de Resíduos</span>
+            </div>
+            <h3 class="font-bold text-slate-800 text-base leading-snug mb-1">Composteira doméstica</h3>
+            <p class="text-xs text-slate-500 mb-4">Sistema prático para compostagem doméstica.</p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div>
+              <span class="block text-xs text-slate-400">Valor</span>
+              <span class="text-lg font-extrabold text-slate-900">R$ 80,00</span>
+            </div>
+            <button onclick="adicionarAoCarrinho('Composteira doméstica', 80.00)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-3.5 py-2.5 rounded-xl transition shadow-sm active:scale-95">
+              + Adicionar
+            </button>
+          </div>
+        </div>
+
+        <!-- 10. Oficina -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between overflow-hidden p-5">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🎓</span>
+              <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">Capacitação & Oficinas</span>
+            </div>
+            <h3 class="font-bold text-slate-800 text-base leading-snug mb-1">Oficinas do Coletivo</h3>
+            <p class="text-xs text-slate-500 mb-4">Compostagem, papel semente, sabão ecológico, customização de roupas e plantio (valor unitário).</p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div>
+              <span class="block text-xs text-slate-400">Valor</span>
+              <span class="text-lg font-extrabold text-slate-900">R$ 100,00</span>
+            </div>
+            <button onclick="adicionarAoCarrinho('Oficina Presencial', 100.00)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-3.5 py-2.5 rounded-xl transition shadow-sm active:scale-95">
+              + Adicionar
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer class="bg-slate-900 text-slate-400 py-8 text-center text-xs">
+    <p>© 2026 Geração Restauração — Coletivo Ambiental. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    function adicionarAoCarrinho(nome, preco) {
+      alert(`" ${nome} " (R$ ${preco.toFixed(2)}) foi adicionado ao seu carrinho!`);
+    }
+  </script>
 </body>
 </html>
